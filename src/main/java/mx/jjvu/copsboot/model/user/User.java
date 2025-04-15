@@ -11,13 +11,12 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import mx.jjvu.copsboot.utility.id.AbstractEntity;
+import mx.jjvu.copsboot.utility.id.UserId;
 
 @Entity
 @Table(name = "copsboot_user")
-public class User {
-    @Id
-    private UUID id;
-
+public class User extends AbstractEntity<UserId> {
     private String name;
     private String email;
     private String password;
@@ -29,16 +28,12 @@ public class User {
 
     protected User() {}
 
-    public User(UUID id, String name, String email, String password, Set<UserRole> roles) {
-        this.id = id;
+    public User(UserId id, String name, String email, String password, Set<UserRole> roles) {
+        super(id);
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public String getName() {
