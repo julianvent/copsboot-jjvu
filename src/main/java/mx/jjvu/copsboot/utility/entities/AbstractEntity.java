@@ -1,8 +1,9 @@
-package mx.jjvu.copsboot.utility.id;
+package mx.jjvu.copsboot.utility.entities;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.MappedSuperclass;
 import mx.jjvu.copsboot.utility.annotations.ArtifactFromFramework;
+import mx.jjvu.copsboot.utility.id.EntityId;
 
 import java.util.Objects;
 

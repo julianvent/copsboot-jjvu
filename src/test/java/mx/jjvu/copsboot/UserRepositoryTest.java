@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import mx.jjvu.copsboot.model.user.User;
 import mx.jjvu.copsboot.model.user.UserRole;
-import mx.jjvu.copsboot.repository.user.UserRepository;
+import mx.jjvu.copsboot.repositories.user.UserRepository;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 

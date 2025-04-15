@@ -1,4 +1,4 @@
-package mx.jjvu.copsboot.repository.user;
+package mx.jjvu.copsboot.repositories.user;
 
 import mx.jjvu.copsboot.utility.id.UserId;
 
