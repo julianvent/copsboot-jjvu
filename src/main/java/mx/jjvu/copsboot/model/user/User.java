@@ -1,4 +1,4 @@
-package mx.jjvu.copsboot.model;
+package mx.jjvu.copsboot.model.user;
 
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +17,7 @@ import jakarta.validation.constraints.NotNull;
 public class User {
     @Id
     private UUID id;
-    
+
     private String name;
     private String email;
     private String password;

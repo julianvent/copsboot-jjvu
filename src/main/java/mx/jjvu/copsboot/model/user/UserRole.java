@@ -1,4 +1,4 @@
-package mx.jjvu.copsboot.model;
+package mx.jjvu.copsboot.model.user;
 
 public enum UserRole {
     OFFICER,
