@@ -1,7 +1,7 @@
 package mx.jjvu.copsboot;
 
-import com.c4_soft.springaddons.security.oauth2.test.webmvc.AutoConfigureAddonsWebmvcClientSecurity;
 import com.c4_soft.springaddons.security.oauth2.test.webmvc.AutoConfigureAddonsWebmvcResourceServerSecurity;
+import mx.jjvu.copsboot.annotations.CopsbootControllerTest;
 import mx.jjvu.copsboot.configuration.WebSecurityConfiguration;
 import mx.jjvu.copsboot.controllers.UserRestController;
 import mx.jjvu.copsboot.model.user.User;
@@ -28,9 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserRestController.class)
-@AutoConfigureAddonsWebmvcResourceServerSecurity
-@Import(WebSecurityConfiguration.class)
+@CopsbootControllerTest(UserRestController.class)
 public class UserRestControllerTest {
     @Autowired
     private MockMvc mockMvc;
