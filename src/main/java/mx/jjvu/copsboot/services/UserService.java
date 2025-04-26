@@ -20,6 +20,10 @@ public class UserService {
         return repository.findByAuthServerId(authServerId);
     }
 
+    public User getUserById(UserId id) {
+        return repository.getUserById(id);
+    }
+
     public User createUser(CreateUserParameters createUserParameters) {
         UserId userId = repository.nextId();
         User user = new User(

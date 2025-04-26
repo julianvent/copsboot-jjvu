@@ -4,22 +4,35 @@ import java.util.UUID;
 
 import io.github.wimdeblauwe.jpearl.InMemoryUniqueIdGenerator;
 import io.github.wimdeblauwe.jpearl.UniqueIdGenerator;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import mx.jjvu.copsboot.infrastructure.SpringProfiles;
 import mx.jjvu.copsboot.utility.id.AuthServerId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import mx.jjvu.copsboot.model.user.User;
 import mx.jjvu.copsboot.repositories.user.UserRepository;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ActiveProfiles(SpringProfiles.REPOSITORY_TEST)
 public class UserRepositoryTest {
+
     @Autowired
     private UserRepository repository;
+    @PersistenceContext
+    private EntityManager entityManager;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Test
     public void testStoreUser() {
@@ -33,6 +46,13 @@ public class UserRepositoryTest {
         assertThat(user).isNotNull();
 
         assertThat(repository.count()).isEqualTo(1L);
+
+        entityManager.flush();
+
+        assertThat(jdbcTemplate.queryForObject("SELECT count(*) FROM copsboot_user", long.class)).isEqualTo(1L);
+
+        assertThat(jdbcTemplate.queryForObject("SELECT email FROM copsboot_user", String.class)).isEqualTo(
+                "hola@ejemplo.com");
     }
 
     @TestConfiguration

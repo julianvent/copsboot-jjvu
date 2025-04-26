@@ -1,5 +1,6 @@
 package mx.jjvu.copsboot.controllers;
 
+import jakarta.validation.Valid;
 import mx.jjvu.copsboot.model.user.User;
 import mx.jjvu.copsboot.model.user.UserDto;
 import mx.jjvu.copsboot.services.CreateUserParameters;
@@ -43,7 +44,7 @@ public class UserRestController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('OFFICER')")
-    public UserDto createUser(@AuthenticationPrincipal Jwt jwt, @RequestBody CreateUserRequest request) {
+    public UserDto createUser(@AuthenticationPrincipal Jwt jwt, @Valid @RequestBody CreateUserRequest request) {
         CreateUserParameters parameters = request.toParameters(jwt);
         User user = userService.createUser(parameters);
         return UserDto.fromUser(user);
