@@ -1,7 +1,6 @@
 package mx.jjvu.copsboot.model.report;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import mx.jjvu.copsboot.utility.annotations.ArtifactFromFramework;
 import mx.jjvu.copsboot.utility.entities.AbstractEntity;
 import mx.jjvu.copsboot.utility.id.ReportId;
